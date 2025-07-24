@@ -96,8 +96,10 @@ def main():
         elif menu == "Dashboard":
             show_dashboard()
         elif menu == "Logout":
-            st.session_state.clear()
-            st.experimental_rerun()
+          for key in list(st.session_state.keys()):
+            del st.session_state[key]
+          st.success("You have been logged out. Please refresh the page.")
+          st.experimental_rerun()
 
 if __name__ == '__main__':
     main()
